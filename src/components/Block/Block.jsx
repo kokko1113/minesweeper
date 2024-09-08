@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react"
 import "./Block.css"
+import FieldObject from "../../constants/fieldObject"
 
 export default function Block({ field, box, setIsGameover, y, x }) {
-    const [isBlock, setIsBlock] = useState(false)
+    const [isBlock, setIsBlock] = useState(false)//ブロックが空いてるかどうか
+    const { OBJECT } = FieldObject()
+
     let num = 0
     let item
     let count = 0
@@ -30,16 +33,16 @@ export default function Block({ field, box, setIsGameover, y, x }) {
         if (y + (countDirection[i].y) >= 0 && x + (countDirection[i].x) >= 0 &&
             y + (countDirection[i].y) < field.length && x + (countDirection[i].x) < field.length) {
             //8方向の爆弾の数を確認
-            if (field[y + (countDirection[i].y)][x + (countDirection[i].x)] == 1) {
+            if (field[y + (countDirection[i].y)][x + (countDirection[i].x)] == OBJECT.bomb) {
                 count++
             }
         }
     }
     num = (count > 0 ? count : "")
 
-    if (box == 0) {
+    if (box == OBJECT.num) {
         item = num
-    } else if (box == 1) {
+    } else if (box == OBJECT.bomb) {
         item = "💣"
     }
 
@@ -49,7 +52,7 @@ export default function Block({ field, box, setIsGameover, y, x }) {
         for (let i = 0; i < openDirection.length; i++) {
             if (y + (openDirection[i].y) >= 0 && x + (openDirection[i].x) >= 0 &&
                 y + (openDirection[i].y) < field.length && x + (openDirection[i].x) < field.length) {
-                if (num == 0) {
+                if (num == 0) {//空けたのが、周りに爆弾がないブロックだったら隣接する同じブロックも空ける
 
                 }
             }
@@ -59,9 +62,9 @@ export default function Block({ field, box, setIsGameover, y, x }) {
     //空けたブロックに何があるか判定
     const checkBlock = () => {
         if (isBlock) {
-            if (box == 0) {
+            if (box == OBJECT.num) {
 
-            } else if (box == 1) {
+            } else if (box == OBJECT.bomb) {
                 setTimeout(() => {
                     setIsGameover(true)
                 }, 1000);
