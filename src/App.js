@@ -1,25 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import "./App.css"
+import Field from "./components/FieldScene/FieldScene"
+import ResultScene from "./components/ResultScene/ResultScene"
 
-function App() {
+export default function App() {
+  const [isGameover, setIsGameover] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {!isGameover ? <Field setIsGameover={setIsGameover}></Field> : <ResultScene></ResultScene>}
+    </>
+  )
 }
-
-export default App;
