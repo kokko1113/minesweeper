@@ -1,9 +1,6 @@
-.block{
-    position: absolute;
-    top: 0;
-    left: 0;
+.cover{
     width: 40px;
     height: 40px;
-    background: rgb(140, 198, 140);
-    border: .5px solid rgb(110, 160, 110);
+    background: rgb(154, 222, 162);
+    border: .5px solid rgb(68, 159, 68);
 }

@@ -1,10 +1,11 @@
 import "./ResultScene.css"
 
-export default function ResultScene() {
+export default function ResultScene({ message }) {
     return (
         <>
             <div className="result">
-                <h1>GAME OVER</h1>
+                <h1>{message}</h1>
+                <button onClick={() => window.location.reload()}>リプレイ</button>
             </div>
         </>
     )
